@@ -595,25 +595,25 @@ class Linkedin(object):
 
         return res.status_code == 200
 
-    # def add_connection(self, profile_urn_id):
-    #     payload = {
-    #         "emberEntityName": "growth/invitation/norm-invitation",
-    #         "invitee": {
-    #             "com.linkedin.voyager.growth.invitation.InviteeProfile": {
-    #                 "profileId": profile_urn_id
-    #             }
-    #         },
-    #     }
+    def add_connection(self, profile_urn_id):
+       payload = {
+           "emberEntityName": "growth/invitation/norm-invitation",
+           "invitee": {
+               "com.linkedin.voyager.growth.invitation.InviteeProfile": {
+                     "profileId": profile_urn_id
+               }
+           },
+       }
 
-    #     print(payload)
+       print(payload)
 
-    #     res = self._post(
-    #         "/growth/normInvitations",
-    #         data=payload,
-    #         headers={"accept": "application/vnd.linkedin.normalized+json+2.1"},
-    #     )
+       res = self._post(
+           "/growth/normInvitations",
+           data=payload,
+           headers={"accept": "application/vnd.linkedin.normalized+json+2.1"},
+       )
 
-    #     return res.status_code != 201
+       return res.status_code != 201
 
     def remove_connection(self, public_profile_id):
         res = self._post(
