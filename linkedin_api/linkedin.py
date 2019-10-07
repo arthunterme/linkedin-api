@@ -606,10 +606,11 @@ class Linkedin(object):
        }
 
        print(payload)
-
+       data = '{"trackingId":"yvzykVorToqcOuvtxjSFMg==","invitations":[],"excludeInvitations":[],"invitee":{"com.linkedin.voyager.growth.invitation.InviteeProfile":{"profileId":' + '"' + profile_urn_id + '"' + '}}}'
+        
        res = self._post(
            "/growth/normInvitations",
-           data=payload,
+           data=data,
            headers={"accept": "application/vnd.linkedin.normalized+json+2.1"},
        )
 
