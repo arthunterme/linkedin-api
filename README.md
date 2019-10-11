@@ -2,9 +2,9 @@
 
 👨‍💼 Python Wrapper for the Linkedin API
 
-[![PyPI version](https://badge.fury.io/py/linkedin-api.svg)](https://badge.fury.io/py/linkedin-api)
+[![Build Status](https://travis-ci.com/tomquirk/linkedin-api.svg?branch=master)](https://travis-ci.com/tomquirk/linkedin-api)
 
-[![Build](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/tomquirk)
+[![buymeacoffee: https://www.buymeacoffee.com/tomquirk](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/tomquirk)
 
 
 > No "official" API access required - just use a valid Linkedin account!
@@ -13,6 +13,9 @@ Programmatically send messages, perform searches, get profile data and more, all
 
 Before using this project, please consult the [Terms and Conditions](#t-c) and [Legal Notice](#legal).
 
+## Hey!
+
+I'm taking a break from Github for a few weeks and won't be responding to any tickets 😎
 
 
 ## Overview
@@ -36,7 +39,7 @@ So specifically, this project aims to provide complete coverage for Voyager.
 Using **Python >= 3.6**:
 
 ```
-$ pip install linkedin-api
+$ pip install -e git+https://github.com/tomquirk/linkedin-api.git
 ```
 
 ### Example usage
