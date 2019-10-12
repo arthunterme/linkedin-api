@@ -272,7 +272,24 @@ class Linkedin(object):
             del item["entityUrn"]
 
         return skills
+    
+    def get_likers(self,thread_urn=None,):
+                           
+        https://www.linkedin.com/voyager/api/feed/reactions?count=10&q=reactionType&start=10&threadUrn=urn%3Ali%3Aactivity%3A6587703054185967618
+        
+        params = {
+            "profileId": {public_id or urn_id},
+            "urn:li:activity": "thread_urn"
+            "q": "reactionType",
+            "moduleKey": "member-share",
+            "count": Linkedin._MAX_UPDATE_COUNT,
+            "start": len(results),
+        }
 
+        res = self._fetch(f"/feed/reactions", params=params)
+        
+        data = res.json()
+                          
     def get_profile(self, public_id=None, urn_id=None):
         """
         Return data for a single profile.
