@@ -281,7 +281,7 @@ class Linkedin(object):
                            
     def get_post(self, urn_id=None):
 
-        res = self._fetch(f"/feed/profileUpdatesV2?count=5&includeLongTermHistory=true&moduleKey=member-shares%3Aphone&paginationToken=dXJuOmxpOmFjdGl2aXR5OjY1NzY3MzM4NzU5ODc0NjAwOTYtMTU2ODAxNTU0NTc1NA%3D%3D&profileUrn={urn_id}&q=memberShareFeed&start=5")
+        res = self._fetch(f"/identity/profileUpdatesV2?count=5&includeLongTermHistory=true&moduleKey=member-shares%3Aphone&paginationToken=dXJuOmxpOmFjdGl2aXR5OjY1NzY3MzM4NzU5ODc0NjAwOTYtMTU2ODAxNTU0NTc1NA%3D%3D&profileUrn={urn_id}&q=memberShareFeed&start=5")
         
         return res.json()
                            
