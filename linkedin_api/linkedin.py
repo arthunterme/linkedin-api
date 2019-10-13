@@ -284,7 +284,7 @@ class Linkedin(object):
 
         res = self._fetch(f"/feed/reactions", params=params)
         
-        data = res.json()
+        return res.json()
     
     def get_like(self, thread_id=None):
         
@@ -304,7 +304,7 @@ class Linkedin(object):
                            
         res = self._fetch(f"/identity/profileUpdatesV2", params=params)
         
-        data = res.json()
+        return res.json()
                            
     def get_profile(self, public_id=None, urn_id=None):
         """
