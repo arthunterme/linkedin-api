@@ -275,7 +275,7 @@ class Linkedin(object):
                            
     def get_likers(self, thread_id=None):
         
-        res = self._fetch(f"/feed/reactions?count=100&q=reactionType&start=100&threadUrn={thread_id}")
+        res = self._fetch(f"/feed/reactions?count=10&q=reactionType&start=10&threadUrn={thread_id}")
 
         return res.json()                       
                            
