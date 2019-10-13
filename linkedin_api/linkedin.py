@@ -300,7 +300,7 @@ class Linkedin(object):
         
         data = res.json()
                            
-    def get_profile(self, , urn_id=None):
+    def get_profile(self, public_id=None, urn_id=None):
         """
         Return data for a single profile.
 
