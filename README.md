@@ -40,6 +40,8 @@ Using **Python >= 3.6**:
 
 ```
 $ pip install git+https://github.com/arthunterme/linkedin-api.git
+
+$ pip install --upgrade git+https://github.com/tomquirk/linkedin-api.git
 ```
 
 ### Example usage
