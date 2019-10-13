@@ -275,7 +275,7 @@ class Linkedin(object):
     
     def get_likers(self, thread_urn=None,):
         
-        params = 
+        params = {
             "thread_urn": "urn:li:activity:6587703054185967618",
             "q": "reactionType",
             "count": Linkedin._MAX_UPDATE_COUNT,
