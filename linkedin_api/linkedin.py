@@ -271,38 +271,17 @@ class Linkedin(object):
         for item in skills:
             del item["entityUrn"]
 
-        return skills
-    
-    def get_likers(self, thread_id=None, results=[]):
+        return skills   
+                           
+    def get_likers(self, thread_id=None):
         
-        params = {
-            "thread_urn": thread_id,
-            "q": "reactionType",
-            "count": Linkedin._MAX_UPDATE_COUNT,
-            "start": len(results),
-        }
-
-        res = self._fetch(f"/feed/reactions", params=params)
-        
-        return res.json()
-    
-    def get_like(self, thread_id=None):
-        
-        res = self._fetch(f"/feed/reactions?count=10&q=reactionType&start=10&threadUrn={thread_id}")
+        res = self._fetch(f"/feed/reactions?count=100&q=reactionType&start=100&threadUrn={thread_id}")
 
         return res.json()                       
                            
-    def get_post(self, public_id=None, urn_id=None, max_results=None, results=[]):                   
-    
-        params = {
-            "profileId": {public_id or urn_id},
-            "q": "memberShareFeed",
-            "moduleKey": "member-share",
-            "count": Linkedin._MAX_UPDATE_COUNT,
-            "start": len(results),
-        }
-                           
-        res = self._fetch(f"/identity/profileUpdatesV2", params=params)
+    def get_post(self, urn_id=None):
+
+        res = self._fetch(f"/feed/profileUpdatesV2?count=5&includeLongTermHistory=true&moduleKey=member-shares%3Aphone&paginationToken=dXJuOmxpOmFjdGl2aXR5OjY1NzY3MzM4NzU5ODc0NjAwOTYtMTU2ODAxNTU0NTc1NA%3D%3D&profileUrn={urn_id}&q=memberShareFeed&start=5")
         
         return res.json()
                            
