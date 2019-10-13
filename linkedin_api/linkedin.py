@@ -273,7 +273,7 @@ class Linkedin(object):
 
         return skills
     
-    def get_likers(self, thread_id=None):
+    def get_likers(self, thread_id=None, results=[]):
         
         params = {
             "thread_urn": thread_id,
