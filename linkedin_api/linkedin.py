@@ -273,10 +273,10 @@ class Linkedin(object):
 
         return skills
     
-    def get_likers(self, thread_urn=None,):
+    def get_likers(self, thread_id=None):
         
         params = {
-            "thread_urn": "urn:li:activity:6587703054185967618",
+            "thread_urn": thread_id,
             "q": "reactionType",
             "count": Linkedin._MAX_UPDATE_COUNT,
             "start": len(results),
@@ -286,8 +286,7 @@ class Linkedin(object):
         
         data = res.json()
                            
-    def get_post(self, public_id=None, urn_id=None, max_results=None, results=[]):
-    /voyager/api/identity/profileUpdatesV2?count=5&includeLongTermHistory=true&moduleKey=member-shares%3Aphone&paginationToken=dXJuOmxpOmFjdGl2aXR5OjY1NzY3MzM4NzU5ODc0NjAwOTYtMTU2ODAxNTU0NTc1NA%3D%3D&profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAtOM2ABjOre3euUt4lHsry1fGS6Rsz8BSI&q=memberShareFeed&start=5                     
+    def get_post(self, public_id=None, urn_id=None, max_results=None, results=[]):                   
     
         params = {
             "profileId": {public_id or urn_id},
@@ -295,7 +294,8 @@ class Linkedin(object):
             "moduleKey": "member-share",
             "count": Linkedin._MAX_UPDATE_COUNT,
             "start": len(results),
-
+        }
+                           
         res = self._fetch(f"/identity/profileUpdatesV2", params=params)
         
         data = res.json()
