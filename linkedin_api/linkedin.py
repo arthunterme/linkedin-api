@@ -285,6 +285,12 @@ class Linkedin(object):
         res = self._fetch(f"/feed/reactions", params=params)
         
         data = res.json()
+    
+    def get_like(self, thread_id=None):
+        
+        res = self._fetch(f"/feed/reactions?count=10&q=reactionType&start=10&threadUrn={thread_id}")
+
+        return res.json()                       
                            
     def get_post(self, public_id=None, urn_id=None, max_results=None, results=[]):                   
     
