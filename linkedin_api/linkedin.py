@@ -285,7 +285,7 @@ class Linkedin(object):
 
         res = self._fetch(f"/feed/reactions", params=params)
         
-        return res.json()
+        return res
 
         data = res.json()
 
