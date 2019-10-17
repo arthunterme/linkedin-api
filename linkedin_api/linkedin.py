@@ -277,15 +277,13 @@ class Linkedin(object):
         self, thread_id=None, max_results=None, results=[]
     ):
         params = {
-            "threadUrn": thread_id,
-            "q": "reactionType",
             "count": 10,
+            "q": "reactionType",
             "start": 10,
+            "threadUrn": thread_id 
         }
 
         res = self._fetch(f"/feed/reactions", params=params)
-        
-        return res
 
         data = res.json()
 
