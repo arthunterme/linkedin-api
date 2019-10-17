@@ -273,9 +273,9 @@ class Linkedin(object):
 
         return skills
                          
-    def get_like(self, thread_id=None, max_results=None, results=[]):
+    def get_like(self, thread_id=None, max_results=None, results=[], count = Linkedin._MAX_UPDATE_COUNT, start = len(results) ):
         
-    res = self._fetch(f"/feed/reactions?count={Linkedin._MAX_UPDATE_COUNT}&q=reactionType&start={len(results)}&threadUrn={thread_id}")
+    res = self._fetch(f"/feed/reactions?count={count}&q=reactionType&start={start}&threadUrn={thread_id}")
 
     return res.json()                   
    
