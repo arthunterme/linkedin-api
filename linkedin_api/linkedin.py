@@ -275,7 +275,7 @@ class Linkedin(object):
                          
     def get_like(self, thread_id=None, max_results=None, results=[]):
         
-    res = self._fetch(f"/feed/reactions?count=Linkedin._MAX_UPDATE_COUNT&q=reactionType&start=len(results)&threadUrn={thread_id}")
+    res = self._fetch(f"/feed/reactions?count={Linkedin._MAX_UPDATE_COUNT}&q=reactionType&start={len(results)}&threadUrn={thread_id}")
 
     return res.json()                   
    
@@ -289,7 +289,7 @@ class Linkedin(object):
             "start": len(results),
         }
 
-        res = self._fetch(f"/feed/reactions?{urlencode(params)}")
+        res = self._fetch(f"/feed/reactions?", params=params)
 
         data = res.json()
 
