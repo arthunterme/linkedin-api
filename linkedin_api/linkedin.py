@@ -308,24 +308,7 @@ class Linkedin(object):
         
         res = self._fetch(f"/feed/reactions?count=10&q=reactionType&start=10&threadUrn={thread_id}")
 
-        data = res.json()
-
-        if (
-            len(data["elements"]) == 0
-            or (max_results is not None and len(results) >= max_results)
-            or (
-                max_results is not None
-                and len(results) / max_results >= Linkedin._MAX_REPEATED_REQUESTS
-            )
-        ):
-            return results
-
-        results.extend(data["elements"])
-        self.logger.debug(f"results grew: {len(results)}")
-
-        return self.get_likers(
-            thread_id=thread_id, results=results, max_results=max_results
-        )                       
+        return res.json()                       
                            
     def get_post(self, urn_id=None):
 
