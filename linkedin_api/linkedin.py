@@ -279,8 +279,8 @@ class Linkedin(object):
         params = {
             "threadUrn": thread_id,
             "q": "reactionType",
-            "count": Linkedin._MAX_UPDATE_COUNT,
-            "start": len(results),
+            "count": 10,
+            "start": 10,
         }
 
         res = self._fetch(f"/feed/reactions?", params=params)
