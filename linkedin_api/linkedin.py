@@ -304,7 +304,7 @@ class Linkedin(object):
             thread_id=thread_id, results=results, max_results=max_results
         )                       
                            
-    def get_likers(self, thread_id=None):
+    def get_likers(self, thread_id=None, max_results=None, results=[]):
         
         res = self._fetch(f"/feed/reactions?count=10&q=reactionType&start=10&threadUrn={thread_id}")
 
