@@ -271,7 +271,49 @@ class Linkedin(object):
         for item in skills:
             del item["entityUrn"]
 
-        return skills   
+        return skills
+                         
+    def get_lik(
+        self, thread_id=None, max_results=None
+    ):
+        params = {
+            "threadUrn": thread_id,
+            "q": "reactionType",
+            "count": 10,
+            "start": 10,
+        }
+
+        res = self._fetch(f"/feed/reactions?(params)")
+
+        return res.json()
+        
+    def get_li(
+        self, thread_id=None, max_results=None
+    ):
+        params = {
+            "threadUrn": thread_id,
+            "q": "reactionType",
+            "count": 10,
+            "start": 10,
+        }
+
+        res = self._fetch(f"/feed/reactions?{urlencode(params)}")
+
+        return res.json()
+
+    def get_l(
+        self, thread_id=None, max_results=None, results=[]
+    ):
+        params = {
+            "threadUrn": thread_id,
+            "q": "reactionType",
+            "count": Linkedin._MAX_UPDATE_COUNT,
+            "start": len(results),
+        }
+
+        res = self._fetch(f"/feed/reactions?(params)")
+
+        return res.json()                       
    
     def get_likes(
         self, thread_id=None, max_results=None, results=[]
