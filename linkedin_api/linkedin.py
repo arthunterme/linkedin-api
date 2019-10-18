@@ -272,41 +272,10 @@ class Linkedin(object):
             del item["entityUrn"]
 
         return skills                   
-   
-    def get_likes(
-        self, thread_id=None, max_results=None, results=[]
-    ):
-        params = {
-            "count": 10,
-            "q": "reactionType",
-            "start": 10,
-            "threadUrn": thread_id 
-        }
-
-        res = self._fetch(f"/feed/reactions", params=params)
-
-        data = res.json()
-
-        if (
-            len(data["elements"]) == 0
-            or (max_results is not None and len(results) >= max_results)
-            or (
-                max_results is not None
-                and len(results) / max_results >= Linkedin._MAX_REPEATED_REQUESTS
-            )
-        ):
-            return results
-
-        results.extend(data["elements"])
-        self.logger.debug(f"results grew: {len(results)}")
-
-        return self.get_likes(
-            thread_id=thread_id, results=results, max_results=max_results
-        )                       
-                           
-    def get_likers(self, thread_id=None):
+                   
+    def get_likers(self, thread_id=None, start=None):
         
-        res = self._fetch(f"/feed/reactions?count=10&q=reactionType&start=10&threadUrn={thread_id}")
+        res = self._fetch(f"/feed/reactions?count=10&q=reactionType&start={start}&threadUrn={thread_id}")
 
         return res.json()                       
                            
