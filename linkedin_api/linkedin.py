@@ -273,9 +273,9 @@ class Linkedin(object):
 
         return skills                   
                    
-    def get_likers(self, thread_id=None, start=None):
+    def get_likers(self, urn_id=None, start=None):
         
-        res = self._fetch(f"/feed/reactions?count=10&q=reactionType&start={start}&threadUrn={thread_id}")
+        res = self._fetch(f"/feed/reactions?count=10&q=reactionType&start={start}&threadUrn={urn_id}")
 
         return res.json()
                         
