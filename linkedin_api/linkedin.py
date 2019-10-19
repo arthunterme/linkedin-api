@@ -277,7 +277,22 @@ class Linkedin(object):
         
         res = self._fetch(f"/feed/reactions?count=10&q=reactionType&start={start}&threadUrn={thread_id}")
 
-        return res.json()                       
+        return res.json()
+                        
+    def get_likes(self, thread_id=None, results=[]):
+
+        params = {"start": len(results), "threadUrn": {thread_id}}
+        
+        res = self._fetch(f"/feed/reactions", params=params)
+
+        data = res.json()
+
+        results.extend(data["elements"])
+        self.logger.debug(f"results grew: {len(results)}")
+
+        return self.get_likes(
+            thread_id=thread_id, results=results
+        )  
                            
     def get_post(self, urn_id=None):
 
