@@ -287,7 +287,7 @@ class Linkedin(object):
         [urn_id] - id provided by the related URN
         """
 
-        res = self._fetch(f"/feed/reactions?count={Linkedin._MAX_UPDATE_COUNT}&q=reactionType&start={len(results)}&threadUrn={urn_id}")
+        res = self._fetch(f"/feed/reactions?count=100&q=reactionType&start={len(results)}&threadUrn={urn_id}")
 
         data = res.json()
 
