@@ -273,26 +273,40 @@ class Linkedin(object):
 
         return skills                   
                    
-    def get_likers(self, urn_id=None, start=None):
+    def get_likers(self, urn_id=None, start=None, count=None):
         
-        res = self._fetch(f"/feed/reactions?count=10&q=reactionType&start={start}&threadUrn={urn_id}")
+        res = self._fetch(f"/feed/reactions?count={count}&q=reactionType&start={start}&threadUrn={urn_id}")
 
         return res.json()
-                        
-    def get_likes(self, thread_id=None, results=[]):
+                           
+    def get_likes(self, urn_id=None, max_results=None, results=[]):
+        """"
+        Return a list of profile posts
 
-        params = {"start": len(results), "threadUrn": {thread_id}}
-        
-        res = self._fetch(f"/feed/reactions", params=params)
+        [public_id] - public identifier i.e. tom-quirk-1928345
+        [urn_id] - id provided by the related URN
+        """
+
+        res = self._fetch(f"/feed/reactions?count={Linkedin._MAX_UPDATE_COUNT}&q=reactionType&start={len(results)}&threadUrn={urn_id}")
 
         data = res.json()
+
+        if (
+            len(data["elements"]) == 0
+            or (max_results is not None and len(results) >= max_results)
+            or (
+                max_results is not None
+                and len(results) / max_results >= Linkedin._MAX_REPEATED_REQUESTS
+            )
+        ):
+            return results
 
         results.extend(data["elements"])
         self.logger.debug(f"results grew: {len(results)}")
 
-        return self.get_likes(
-            thread_id=thread_id, results=results
-        )  
+        return self.get_profile_updates(
+            urn_id=urn_id, results=results, max_results=max_results
+        )                       
                            
     def get_post(self, urn_id=None):
 
