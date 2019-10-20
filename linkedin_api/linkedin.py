@@ -287,7 +287,7 @@ class Linkedin(object):
         [urn_id] - id provided by the related URN
         """
 
-        res = self._fetch(f"/feed/reactions?count=100&q=reactionType&start={len(results)}&threadUrn={urn_id}")
+        res = self._fetch(f"/feed/reactions?count=100&q=reactionType&start={results}&threadUrn={urn_id}")
 
         data = res.json()
 
@@ -304,7 +304,7 @@ class Linkedin(object):
         results.extend(data["elements"])
         self.logger.debug(f"results grew: {len(results)}")
 
-        return self.get_profile_updates(
+        return self.get_likes(
             urn_id=urn_id, results=results, max_results=max_results
         )                       
                            
